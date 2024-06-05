@@ -1,17 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 
 function BookShelf() {
   const [shelf, setShelf] = useState([]);
 
   useEffect(() => {
-    const savedBooks = JSON.parse(localStorage.getItem("bookshelf") || "[]");
+    const savedBooks = JSON.parse(localStorage.getItem('bookshelf')) || [];
     setShelf(savedBooks);
   }, []);
 
   const removeFromShelf = (bookKey) => {
     const updatedShelf = shelf.filter((book) => book.key !== bookKey);
     setShelf(updatedShelf);
-    localStorage.setItem("bookshelf", JSON.stringify(updatedShelf));
+    localStorage.setItem('bookshelf', JSON.stringify(updatedShelf));
   };
 
   return (
@@ -26,7 +26,7 @@ function BookShelf() {
           shelf.map((book) => (
             <div key={book.key} className="book-card">
               <h3>{book.title}</h3>
-              <p>{book.author_name?.join(", ")}</p>
+              <p>{book.author_name?.join(', ')}</p>
               <button
                 onClick={() => removeFromShelf(book.key)}
                 className="btn-card"
